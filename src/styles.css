@@ -16,8 +16,10 @@
     justify-content: space-between;
 }
 
-.displayReading h2{
+.displayReading h2, .status{
     flex:1;
     text-align: start;
     background-color: coral;
+    justify-content: center;
+    align-self: center;
 }
