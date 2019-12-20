@@ -1,6 +1,7 @@
 import React, { useEffect }  from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "./redux/actions/index";
+import Readings from "./components/Readings"
 
 function App() {
     const content = useSelector(state => state);
@@ -14,8 +15,7 @@ function App() {
         <div className='instructions'>
 
             <h1>Relayr Device Dashboard</h1>
-            <p>Fk yeaa.</p>
-
+            <Readings></Readings>
         </div>
     );
 }

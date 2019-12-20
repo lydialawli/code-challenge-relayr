@@ -5,7 +5,7 @@ export function getData() {
     return function (dispatch) {
         return axios.get('http://127.0.0.1:8888/devices')
             .then(res => {
-                dispatch({ type: FETCH_DATA, payload: res.data })
+                dispatch({ type: FETCH_DATA, payload: res.data.data })
             })
             .catch((err) => {
                 dispatch({ type: FETCH_DATA_ERROR, payload: err })

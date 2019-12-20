@@ -1,8 +1,7 @@
 
 const initialState = {
     data: [],
-    fetching: false,
-    fetched: false,
+    error: null,
 };
 
 function rootReducer(state = initialState, { type, payload }) {
@@ -10,14 +9,12 @@ function rootReducer(state = initialState, { type, payload }) {
         case 'FETCH_DATA':
             return {
                 ...state,
-                data: state.data.concat(payload),
-                fetching: true
+                data: payload,
             }
         case 'FETCH_DATA_ERROR':
             return {
                 ...state,
-                data: state.data.concat(payload),
-                fetching: false
+                error: payload,
             }
         default:
             return state;
