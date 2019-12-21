@@ -16,19 +16,19 @@ export function getData() {
 
 export function patchReading(readingName, stateValue) {
     return function (dispatch) {
-        dispatch({ type: action.PATCH_DATA_PENDING })
+        dispatch({ type: action.PATCH_DATA_PENDING, payload: readingName })
         return axios.patch(`http://127.0.0.1:8888/devices/${readingName}?active=${stateValue}`)
             .then(res => {
                 dispatch({
                     type: action.PATCH_DATA_FULLFILLED,
-                    payload: readingName
                 })
             })
             .catch((err) => {
                 console.log('==> patch error')
                 dispatch({
                     type: action.PATCH_DATA_REJECTED,
-                    payload: err
+                    // err: err,
+                    payload: readingName
                 })
             })
     }

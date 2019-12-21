@@ -25,19 +25,31 @@ function rootReducer(state = initialState, { type, payload }) {
                 error: payload
             }
         case 'PATCH_DATA_PENDING':
-            return { ...state, fetching: true }
+            return {
+                ...state, fetching: true,
+                data: state.data.map((reading) =>
+                    reading.name === payload
+                        ? { ...reading, active: !reading.active }
+                        : reading
+                ),
+            }
         case 'PATCH_DATA_FULLFILLED':
             return {
                 ...state,
+                data: state.data,
                 fetching: false,
                 fetched: true
             }
         case 'PATCH_DATA_REJECTED':
             return {
                 ...state,
-                data: state.data,
+                data: state.data.map((reading) =>
+                    reading.name === payload
+                        ? { ...reading, active: !reading.active }
+                        : reading
+                ),
                 fetching: false,
-                error: payload
+                // error: err
             }
 
         default:

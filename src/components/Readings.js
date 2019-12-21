@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Switch from "react-switch"
+import Toggle from "react-toggle"
 import { patchReading } from "../redux/actions/index"
 
 const DisplayReading = (props) => {
 
     const dispatch = useDispatch()
-    const toggleState = (readingName, stateValue) => dispatch(patchReading(readingName, stateValue))
+    const toggleState = (readingName, stateValue) => dispatch(patchReading(readingName, stateValue), [])
 
     return (
         <div className="displayReading">
@@ -15,13 +16,14 @@ const DisplayReading = (props) => {
             <h2>{props.reading.unit}</h2>
             <h2>{props.reading.timestamp}</h2>
             {props.type === 'reading' ?
-                (<div className="status">
-                    <Switch onChange={toggleState.bind(null, props.reading.name, !props.reading.active)} checked={props.reading.active} />
-                </div>)
+                (<Toggle onChange={toggleState.bind(null, props.reading.name, !props.reading.active)} checked={props.reading.active}/>)
+                // (<div className="status">
+                //     <Switch onChange={toggleState.bind(null, props.reading.name, !props.reading.active)}
+                //         checked={props.reading.active} />
+                // </div>)
                 :
                 (<h2 className="status">{props.reading.active}</h2>)
             }
-
 
         </div>
     )
