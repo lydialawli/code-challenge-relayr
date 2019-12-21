@@ -30,11 +30,3 @@ function App() {
 export default App;
 
 
-
-// filterBeers = (event) => {
-//     let text = event.target.value
-//     let filtered = this.state.beers.filter(e =>
-//         e.name.toUpperCase().includes(text.toUpperCase()))
-
-//     this.setState({ filtered })
-// }

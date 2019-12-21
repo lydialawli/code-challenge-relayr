@@ -34,8 +34,7 @@ export function patchReading(readingName, stateValue) {
     }
 }
 
+export function setVisibilityFilter(filter) {
+    return { type: action.SET_VISIBILITY_FILTER, filter }
+}
 
-// export const toggleStatus = (readingName) => ({
-//     type: TOGGLE_ACTIVE_STATUS,
-//     payload: readingName
-// });

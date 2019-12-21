@@ -1,5 +1,9 @@
+import { VisibilityFilters } from '../constants/action-types'
+
+const { SHOW_ALL } = VisibilityFilters
 
 const initialState = {
+    visibilityFilter: VisibilityFilters.SHOW_ALL,
     data: [],
     fetching: false,
     fetched: false,
@@ -8,29 +12,43 @@ const initialState = {
     inactive: null
 };
 
-function rootReducer(state = initialState, { type, payload }) {
-    switch (type) {
+function visibilityFilter(state = SHOW_ALL, action) {
+    switch (action.type) {
+        case SET_VISIBILITY_FILTER:
+            return action.filter
+        default:
+            return state
+    }
+}
+
+
+function rootReducer(state = initialState, action) {
+    switch (action.type) {
+        case 'SET_VISIBILITY_FILTER':
+            return {
+                ...state,
+                visibilityFilter: visibilityFilter(state.visibilityFilter, { type, payload })
+            }
         case 'FETCH_DATA_PENDING':
             return { ...state, fetching: true }
         case 'FETCH_DATA_FULLFILLED':
             return {
                 ...state,
-                data: payload,
+                data: action.payload,
                 fetching: false,
                 fetched: true
             }
         case 'FETCH_DATA_REJECTED':
             return {
                 ...state,
-                error: payload,
+                error: action.payload,
                 fetching: false,
-                error: payload
             }
         case 'PATCH_DATA_PENDING':
             return {
                 ...state, fetching: true,
                 data: state.data.map((reading) =>
-                    reading.name === payload
+                    reading.name === action.payload
                         ? { ...reading, active: !reading.active }
                         : reading
                 ),
@@ -45,14 +63,14 @@ function rootReducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 data: state.data.map((reading) =>
-                    reading.name === payload
+                    reading.name === action.payload
                         ? { ...reading, active: !reading.active }
                         : reading
                 ),
                 fetching: false,
                 // error: err
             }
-    
+
         default:
             return state;
     }
