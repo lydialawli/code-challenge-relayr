@@ -4,6 +4,8 @@ const initialState = {
     fetching: false,
     fetched: false,
     error: null,
+    active: null,
+    inactive: null
 };
 
 function rootReducer(state = initialState, { type, payload }) {
@@ -36,7 +38,6 @@ function rootReducer(state = initialState, { type, payload }) {
         case 'PATCH_DATA_FULLFILLED':
             return {
                 ...state,
-                data: state.data,
                 fetching: false,
                 fetched: true
             }
@@ -51,7 +52,7 @@ function rootReducer(state = initialState, { type, payload }) {
                 fetching: false,
                 // error: err
             }
-
+    
         default:
             return state;
     }
