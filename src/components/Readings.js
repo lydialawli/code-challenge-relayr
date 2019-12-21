@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Switch from "react-switch"
+import { patchReading } from "../redux/actions/index"
 
 const DisplayReading = (props) => {
 
+    const dispatch = useDispatch()
+    const toggleState = (readingName, stateValue) => dispatch(patchReading(readingName, stateValue))
 
     return (
         <div className="displayReading">
@@ -12,7 +15,9 @@ const DisplayReading = (props) => {
             <h2>{props.reading.unit}</h2>
             <h2>{props.reading.timestamp}</h2>
             {props.type === 'reading' ?
-                (<div className="status"><Switch checked={props.reading.active} /></div>)
+                (<div className="status">
+                    <Switch onChange={toggleState.bind(null, props.reading.name, !props.reading.active)} checked={props.reading.active} />
+                </div>)
                 :
                 (<h2 className="status">{props.reading.active}</h2>)
             }
@@ -23,8 +28,8 @@ const DisplayReading = (props) => {
 }
 
 const Readings = () => {
-    const data = useSelector((state) => state.data)
-    const dispatch = useDispatch();
+    const data = useSelector(state => state.data)
+    const error = useSelector(state => state.error)
 
     const titles = {
         name: 'NAME',
@@ -33,13 +38,10 @@ const Readings = () => {
         timestamp: 'TIMESTAMP',
         active: 'STATUS'
     }
-    // useEffect(() => {
-    //     console.log(data.data)
-    // })
 
     return (
         <div >
-            <DisplayReading type={'title'} reading={titles}></DisplayReading>
+            <DisplayReading type={'titles'} reading={titles}></DisplayReading>
             {data.map((d) => (
                 <DisplayReading type={'reading'} key={d.name} reading={d} ></DisplayReading>
             ))}

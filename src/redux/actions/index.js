@@ -1,14 +1,41 @@
-import { FETCH_DATA, FETCH_DATA_ERROR } from "../constants/action-types";
+import * as action from '../constants/action-types'
 import axios from 'axios'
 
 export function getData() {
     return function (dispatch) {
+        dispatch({ type: action.FETCH_DATA_PENDING })
         return axios.get('http://127.0.0.1:8888/devices')
             .then(res => {
-                dispatch({ type: FETCH_DATA, payload: res.data.data })
+                dispatch({ type: action.FETCH_DATA_FULLFILLED, payload: res.data.data })
             })
             .catch((err) => {
-                dispatch({ type: FETCH_DATA_ERROR, payload: err })
+                dispatch({ type: action.FETCH_DATA_REJECTED, payload: err })
             })
     }
 }
+
+export function patchReading(readingName, stateValue) {
+    return function (dispatch) {
+        dispatch({ type: action.PATCH_DATA_PENDING })
+        return axios.patch(`http://127.0.0.1:8888/devices/${readingName}?active=${stateValue}`)
+            .then(res => {
+                dispatch({
+                    type: action.PATCH_DATA_FULLFILLED,
+                    payload: readingName
+                })
+            })
+            .catch((err) => {
+                console.log('==> patch error')
+                dispatch({
+                    type: action.PATCH_DATA_REJECTED,
+                    payload: err
+                })
+            })
+    }
+}
+
+
+// export const toggleStatus = (readingName) => ({
+//     type: TOGGLE_ACTIVE_STATUS,
+//     payload: readingName
+// });
