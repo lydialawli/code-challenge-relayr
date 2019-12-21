@@ -1,25 +1,75 @@
 /* Add your CSS here. This file should */
 /* automatically hot reload into the app on save */
 
-.instructions {
+.layout {
+    display: flex;
     border: 2px solid #202936;
     border-radius: 30px;
     margin: 0 auto;
     padding: 20px;
     text-align: center;
+    flex-direction: column;
 }
 
-.displayReading {
+.box1{
+    width: 100%;
+    background-color: rgb(119, 189, 92);
+}
+
+.box2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    /* background-color: indianred; */
+}
+
+.box3{
+    flex-direction: row;
+    background-color: rgb(92, 126, 189);
+}
+
+.counter{
+    /* background-color: rgb(85, 67, 94); */
+    width: 10rem;
+}
+
+.searchBar {
+    min-width: 200px;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+	cursor: pointer;
+    background-color: transparent;
+    box-sizing: border-box;
+    padding: 10px 50px;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.searchBar input:focus {
+	border-color: #00988f;
+}
+
+
+/* .readingsContainer{
+    flex-direction: column;
+} */
+
+.readingLayout {
     display: flex;
     flex-direction: row;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     justify-content: space-between;
 }
 
-.displayReading h2, .status{
+.readingLayout h2, .status{
     flex:1;
     text-align: start;
     background-color: coral;
     justify-content: center;
     align-self: center;
+}
+
+.status{
+    /* background-color: bisque; */
 }

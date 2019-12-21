@@ -11,7 +11,7 @@ const DisplayReading = (props) => {
     const toggleState = (readingName, stateValue) => dispatch(patchReading(readingName, stateValue), [])
 
     return (
-        <div className="displayReading">
+        <div className="readingLayout">
             <h2>{props.reading.name}</h2>
             <h2>{props.reading.value}</h2>
             <h2>{props.reading.unit}</h2>
@@ -35,7 +35,6 @@ const DisplayReading = (props) => {
 
 const Readings = () => {
     const data = useSelector(state => state.data)
-    const error = useSelector(state => state.error)
 
     const titles = {
         name: 'NAME',
@@ -46,7 +45,7 @@ const Readings = () => {
     }
 
     return (
-        <div >
+        <div className='readingsContainer'>
             <DisplayReading type={'titles'} reading={titles}></DisplayReading>
             {data.map((d) => (
                 <DisplayReading type={'reading'} key={d.name} reading={d} ></DisplayReading>

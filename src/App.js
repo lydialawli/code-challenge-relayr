@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getData } from "./redux/actions/index";
 import Readings from "./components/Readings"
 import Counter from "./components/Counter"
-
+import Search from "./components/Search"
 
 function App() {
     const content = useSelector(state => state);
@@ -14,12 +14,27 @@ function App() {
     }, [])
 
     return (
-        <div className='instructions'>
-            <h1>Relayr Device Dashboard</h1>
-            <Counter />
-            <Readings />
+        <div className='layout'>
+            <div className='box1'><h1>Relayr Device Dashboard</h1></div>
+            <div className="box2">
+                <Search />
+                <Counter />
+            </div>
+            <div className="box3">
+                <Readings />
+            </div>
         </div>
     );
 }
 
 export default App;
+
+
+
+// filterBeers = (event) => {
+//     let text = event.target.value
+//     let filtered = this.state.beers.filter(e =>
+//         e.name.toUpperCase().includes(text.toUpperCase()))
+
+//     this.setState({ filtered })
+// }
