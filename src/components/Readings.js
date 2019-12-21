@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import Switch from "react-switch"
 import Toggle from "react-toggle"
 import { patchReading } from "../redux/actions/index"
+require("react-toggle/style.css")
+
 
 const DisplayReading = (props) => {
 
@@ -16,11 +17,14 @@ const DisplayReading = (props) => {
             <h2>{props.reading.unit}</h2>
             <h2>{props.reading.timestamp}</h2>
             {props.type === 'reading' ?
-                (<Toggle onChange={toggleState.bind(null, props.reading.name, !props.reading.active)} checked={props.reading.active}/>)
-                // (<div className="status">
-                //     <Switch onChange={toggleState.bind(null, props.reading.name, !props.reading.active)}
-                //         checked={props.reading.active} />
-                // </div>)
+                (<div className="status">
+                    <Toggle
+                        icons={false}
+                        onChange={toggleState.bind(null, props.reading.name, !props.reading.active)}
+                        checked={props.reading.active}
+                    />
+                </div>)
+
                 :
                 (<h2 className="status">{props.reading.active}</h2>)
             }
