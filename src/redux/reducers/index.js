@@ -9,7 +9,8 @@ const initialState = {
     fetched: false,
     error: null,
     active: null,
-    inactive: null
+    inactive: null,
+    filter: 'nothing'
 };
 
 function visibilityFilter(state = SHOW_ALL, action) {
@@ -24,10 +25,15 @@ function visibilityFilter(state = SHOW_ALL, action) {
 
 function rootReducer(state = initialState, action) {
     switch (action.type) {
+        // case 'SET_VISIBILITY_FILTER':
+        //     return {
+        //         ...state,
+        //         visibilityFilter: visibilityFilter(state.visibilityFilter, { type, payload })
+        //     }
         case 'SET_VISIBILITY_FILTER':
             return {
                 ...state,
-                visibilityFilter: visibilityFilter(state.visibilityFilter, { type, payload })
+                filter: action.value
             }
         case 'FETCH_DATA_PENDING':
             return { ...state, fetching: true }
