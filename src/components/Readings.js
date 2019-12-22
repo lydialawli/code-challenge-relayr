@@ -18,28 +18,34 @@ const DisplayReading = (props) => {
     let date = new Date(props.reading.timestamp)
 
     return (
-        <div className={`readingLayout ${props.type === 'titles' ? 'title' : 'readings'}`}>
+        <div className='readingLayout readings'>
             <h2>{props.reading.name}</h2>
-            <h2>{props.reading.value}</h2>
+            <h2>{props.reading.value.toFixed(2)}</h2>
             <h2>{props.reading.unit}</h2>
-            <h2>{props.type === 'reading' ? <ReactTimeAgo date={date} /> : 'LAST UPDATED'}</h2>
-            {props.type === 'reading' ?
-                (<div className="status">
-                    <Toggle
-                        icons={false}
-                        onChange={toggleState.bind(null, props.reading.name, !props.reading.active)}
-                        checked={props.reading.active}
-                    />
-                </div>)
-
-                :
-                (<h2 className="status">{props.reading.active}</h2>)
-            }
-
+            <h2><ReactTimeAgo date={date} /></h2>
+            <div className="status">
+                <Toggle
+                    icons={false}
+                    onChange={toggleState.bind(null, props.reading.name, !props.reading.active)}
+                    checked={props.reading.active}
+                />
+            </div>
         </div>
     )
 }
 
+
+const DisplayTitle = () => {
+    return (
+        <div className='readingLayout title'>
+            <h2>NAME</h2>
+            <h2>VALUE</h2>
+            <h2>UNIT</h2>
+            <h2>LAST UPDATED</h2>
+            <h2 >STATUS</h2>
+        </div>
+    )
+}
 
 
 const Readings = () => {
@@ -56,17 +62,9 @@ const Readings = () => {
         }
     }
 
-    const titles = {
-        name: 'NAME',
-        unit: 'UNIT',
-        value: 'VALUE',
-        timestamp: 'LAST UPDATED',
-        active: 'STATUS'
-    }
-
     return (
         <div className='readingsContainer'>
-            <DisplayReading type={'titles'} reading={titles}></DisplayReading>
+            <DisplayTitle />
             {getVisibleReadings(data, filter).map((d) => (
                 <DisplayReading type={'reading'} key={d.name} reading={d} ></DisplayReading>
             ))}

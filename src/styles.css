@@ -11,11 +11,13 @@
     flex-direction: column;
     font-family:'Rubik', sans-serif;
     font-weight: 300;
+    margin: 20px;
+    transition: all .3s ease-in-out;
 }
 
 .box1{
     width: 100%;
-    background-color: rgb(119, 189, 92);
+    /* background-color: rgb(119, 189, 92); */
 }
 
 .box2{
@@ -23,23 +25,31 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    background-color: indianred;
+    /* background-color: indianred; */
 }
 
 .box3{
     flex-direction: row;
-    background-color: rgb(92, 126, 189);
+    /* background-color: rgb(92, 126, 189); */
 }
 
 .counter{
-    background-color: rgb(85, 67, 94);
+    /* background-color: rgb(85, 67, 94); */
     width: 10rem;
+    padding-right: 2%;
+}
+.counter h3{
+    font-weight: 300;
+}
+
+.counter span{
+    font-weight: 400;
 }
 
 .searchBar {
     min-width: 200px;
-    border: 1px solid #e2e2e2;
-    border-radius: 3px;
+    border: 1px solid #1d1d1d;
+    border-radius: 5px;
 	cursor: pointer;
     background-color: transparent;
     box-sizing: border-box;
@@ -61,22 +71,35 @@
     display: flex;
     flex-direction: row;
     /* background-color: aquamarine; */
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .readingLayout h2, .status{
     flex:1;
-    text-align: start;
+    /* text-align: start; */
     /* background-color: coral; */
     justify-content: center;
     align-self: center;
     font-weight: 300;
 }
 
-.status{
-    /* background-color: bisque; */
-}
-
 .title h2{
     font-weight: 500;
+}
+
+@media (max-width: 1000px) {
+    .layout{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 700px) {
+    .layout{
+        font-size: 10px;
+    }
+
+    .searchBar {
+        width: 100px;
+    }
+
 }
