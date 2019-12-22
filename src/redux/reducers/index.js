@@ -1,9 +1,5 @@
-import { VisibilityFilters } from '../constants/action-types'
-
-const { SHOW_ALL } = VisibilityFilters
 
 const initialState = {
-    visibilityFilter: VisibilityFilters.SHOW_ALL,
     data: [],
     fetching: false,
     fetched: false,
@@ -16,11 +12,7 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
     switch (action.type) {
-        // case 'SET_VISIBILITY_FILTER':
-        //     return {
-        //         ...state,
-        //         visibilityFilter: visibilityFilter(state.visibilityFilter, { type, payload })
-        //     }
+
         case 'SET_VISIBILITY_FILTER':
             return {
                 ...state,

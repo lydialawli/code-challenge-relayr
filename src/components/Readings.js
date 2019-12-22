@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Toggle from "react-toggle"
 import { patchReading } from "../redux/actions/index"
-import { filterReadings } from "../redux/actions/index"
+import ReactTimeAgo from 'react-time-ago'
+import JavascriptTimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
+JavascriptTimeAgo.locale(en)
+
 require("react-toggle/style.css")
 
 
@@ -11,12 +15,14 @@ const DisplayReading = (props) => {
     const dispatch = useDispatch()
     const toggleState = (readingName, stateValue) => dispatch(patchReading(readingName, stateValue), [])
 
+    let date = new Date(props.reading.timestamp)
+
     return (
-        <div className="readingLayout">
+        <div className={`readingLayout ${props.type === 'titles' ? 'title' : 'readings'}`}>
             <h2>{props.reading.name}</h2>
             <h2>{props.reading.value}</h2>
             <h2>{props.reading.unit}</h2>
-            <h2>{props.reading.timestamp}</h2>
+            <h2>{props.type === 'reading' ? <ReactTimeAgo date={date} /> : 'LAST UPDATED'}</h2>
             {props.type === 'reading' ?
                 (<div className="status">
                     <Toggle
@@ -54,7 +60,7 @@ const Readings = () => {
         name: 'NAME',
         unit: 'UNIT',
         value: 'VALUE',
-        timestamp: 'TIMESTAMP',
+        timestamp: 'LAST UPDATED',
         active: 'STATUS'
     }
 

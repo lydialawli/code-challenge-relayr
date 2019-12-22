@@ -9,6 +9,8 @@
     padding: 20px;
     text-align: center;
     flex-direction: column;
+    font-family:'Rubik', sans-serif;
+    font-weight: 300;
 }
 
 .box1{
@@ -21,7 +23,7 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    /* background-color: indianred; */
+    background-color: indianred;
 }
 
 .box3{
@@ -30,7 +32,7 @@
 }
 
 .counter{
-    /* background-color: rgb(85, 67, 94); */
+    background-color: rgb(85, 67, 94);
     width: 10rem;
 }
 
@@ -65,11 +67,16 @@
 .readingLayout h2, .status{
     flex:1;
     text-align: start;
-    background-color: coral;
+    /* background-color: coral; */
     justify-content: center;
     align-self: center;
+    font-weight: 300;
 }
 
 .status{
     /* background-color: bisque; */
+}
+
+.title h2{
+    font-weight: 500;
 }
