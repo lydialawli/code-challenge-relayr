@@ -34,15 +34,11 @@ export function patchReading(readingName, stateValue) {
     }
 }
 
-export function setVisibilityFilter(filter) {
-    return { type: action.SET_VISIBILITY_FILTER, filter }
-}
-
-
 
 export function setFilter(value) {
     return function (dispatch) {
-        console.log('changing filter!=>' + value)
+        // console.log('changing filter!=>' + value)
         dispatch({ type: action.SET_VISIBILITY_FILTER, value: value })
     }
 }
+

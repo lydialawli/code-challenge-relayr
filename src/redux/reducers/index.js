@@ -10,17 +10,8 @@ const initialState = {
     error: null,
     active: null,
     inactive: null,
-    filter: 'nothing'
+    filter: ''
 };
-
-function visibilityFilter(state = SHOW_ALL, action) {
-    switch (action.type) {
-        case SET_VISIBILITY_FILTER:
-            return action.filter
-        default:
-            return state
-    }
-}
 
 
 function rootReducer(state = initialState, action) {

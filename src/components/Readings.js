@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Toggle from "react-toggle"
 import { patchReading } from "../redux/actions/index"
+import { filterReadings } from "../redux/actions/index"
 require("react-toggle/style.css")
 
 
@@ -33,8 +34,21 @@ const DisplayReading = (props) => {
     )
 }
 
+
+
 const Readings = () => {
     const data = useSelector(state => state.data)
+    const filter = useSelector(state => state.filter)
+
+    const getVisibleReadings = (data, filter) => {
+        if (filter) {
+            return data.filter(d =>
+                d.name.toUpperCase().includes(filter.toUpperCase()))
+        }
+        else {
+            return data
+        }
+    }
 
     const titles = {
         name: 'NAME',
@@ -47,7 +61,7 @@ const Readings = () => {
     return (
         <div className='readingsContainer'>
             <DisplayReading type={'titles'} reading={titles}></DisplayReading>
-            {data.map((d) => (
+            {getVisibleReadings(data, filter).map((d) => (
                 <DisplayReading type={'reading'} key={d.name} reading={d} ></DisplayReading>
             ))}
         </div>
