@@ -83,14 +83,20 @@
     font-weight: 300;
 }
 
+
 .title h2{
     font-weight: 500;
+}
+
+.bigDisplayNone{
+    display: none;
 }
 
 @media (max-width: 1000px) {
     .layout{
         font-size: 12px;
     }
+
 }
 
 @media (max-width: 700px) {
@@ -100,6 +106,36 @@
 
     .searchBar {
         width: 100px;
+        font-size: 13px;
     }
 
+
+}
+
+@media (max-width: 400px) {
+    .layout{
+        font-size: 9px;
+    }
+
+    .searchBar {
+        font-size: 13px;
+    }
+
+    .smallDisplayNone{
+        display: none;
+    }
+
+    .bigDisplayNone{
+        display: unset;
+    }
+
+    .readingLayout h2, .status{
+        width:30%;
+    }
+
+    /* .readingLayout h2{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    } */
 }

@@ -11,7 +11,7 @@ const Search = () => {
     }
 
     return (
-        <div >
+        <div className='searchContainer' >
             <input onChange={changeFilter} className='searchBar' type='text' placeholder={'Search...'} />
         </div>
     )
