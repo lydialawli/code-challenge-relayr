@@ -15,15 +15,15 @@ const DisplayReading = (props) => {
     const toggleState = (readingName, stateValue) => dispatch(patchReading(readingName, stateValue), [])
 
     function getName(name) {
-        const words = name.split("_")
+        let words = name.split("_")
 
-        if (words.length === 2)
-            return words[0].slice(0, 3).concat('_', words[1])
-        if (words.length === 3)
-            return words[0].slice(0, 3).concat('_', words[1], '_', words[2].slice())
+        if (words.length > 1)
+            return name.split(/_(.+)/)[0].slice(0, 3).concat('_', name.split(/_(.+)/)[1])
+
         else {
             return name
         }
+
     }
 
 
@@ -33,7 +33,7 @@ const DisplayReading = (props) => {
         <div className='readingLayout readings'>
             <h2 className="smallDisplayNone">{props.reading.name}</h2>
             <h2 className="bigDisplayNone">{getName(props.reading.name)}</h2>
-            <h2>{props.reading.value.toFixed(2)}</h2>
+            <h2>{props.reading.value.toFixed(2)} <span className="bigDisplayNone">{props.reading.unit}</span></h2>
             <h2 className="smallDisplayNone">{props.reading.unit}</h2>
             <h2 className="smallDisplayNone"><ReactTimeAgo date={date} /></h2>
             <div className="status">
@@ -64,6 +64,7 @@ const DisplayTitle = () => {
 const Readings = () => {
     const data = useSelector(state => state.data)
     const filter = useSelector(state => state.filter)
+    // let lastUpdate = data[0].timestamp
 
     const getVisibleReadings = (data, filter) => {
         if (filter) {
@@ -81,7 +82,7 @@ const Readings = () => {
             {getVisibleReadings(data, filter).map((d) => (
                 <DisplayReading type={'reading'} key={d.name} reading={d} ></DisplayReading>
             ))}
-            {/* <h2 id="bigDisplayNone"><ReactTimeAgo date={new Date(data[0].timestamp)} /></h2> */}
+            {/* <span className="bigDisplayNone"><ReactTimeAgo date={lastUpdate} /></span> */}
         </div>
     )
 }

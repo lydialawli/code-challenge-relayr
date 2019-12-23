@@ -3,7 +3,9 @@
 
 .layout {
     display: flex;
-    border: 2px solid #202936;
+    /* border: 2px solid #202936; */
+    box-shadow:2px 1px 10px 0.5px rgb(231, 231, 231); 
+
     border-radius: 30px;
     margin: 0 auto;
     padding: 20px;
@@ -48,7 +50,7 @@
 
 .searchBar {
     min-width: 200px;
-    border: 1px solid #1d1d1d;
+    border: 1px solid #d8d8d8;
     border-radius: 5px;
 	cursor: pointer;
     background-color: transparent;
@@ -112,7 +114,7 @@
 
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
     .layout{
         font-size: 9px;
     }
